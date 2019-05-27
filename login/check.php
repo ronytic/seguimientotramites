@@ -3,7 +3,7 @@ session_start();
 $dir=dirname(__FILE__).DIRECTORY_SEPARATOR."../";
 define("RAIZ",$dir);
 include_once(RAIZ."configuracion.php");
-if(!(isset($_SESSION["LoginSistemaRedes"]) && $_SESSION['LoginSistemaRedes']==1)){
+if(!(isset($_SESSION["LoginSistemaSeguimiento"]) && $_SESSION['LoginSistemaSeguimiento']==1)){
 	include_once(RAIZ."funciones/url.php");
 	header("Location:".url_base().$directory."login/?u=".$_SERVER['PHP_SELF']);
 }else{

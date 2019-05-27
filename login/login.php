@@ -79,9 +79,8 @@ if(!empty($_POST)){
             //echo "asd";
 			$logusuario->insertarRegistro($valuesLog,0);
 			$_SESSION['CodUsuarioLog']=$codUsuario;
-			$_SESSION['LoginSistemaRedes']=1;
+			$_SESSION['LoginSistemaSeguimiento']=1;
 			$_SESSION['Nivel']=$Nivel;
-            $_SESSION['Pass']=md5($pass);
 			header("Location:".$direccion);
 		}
 		else{
