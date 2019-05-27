@@ -126,7 +126,7 @@ $(window).bind("resize click", function () {
     // Waint until metsiMenu, collapse and other effect finish and set wrapper height
     setTimeout(function () {
         fixWrapperHeight();
-    }, 300);
+    }, 0);
 });
 
 function fixWrapperHeight() {
