@@ -8,7 +8,9 @@ $Lema="";
 <?php include_once("cabecerahtml.php");?>
 <?php include_once("cabecera.php");?>
                 <div class="col-lg-10 col-lg-offset-1">
-
+                    <?php
+                      /*
+                    ?>
                     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                       <!-- Indicators -->
                       <ol class="carousel-indicators">
@@ -65,6 +67,10 @@ $Lema="";
                         <span class="sr-only">Siguiente</span>
                       </a>
                     </div>
+
+                  <?php
+                    */
+                  ?>
                 </div>
             </div>
         </div>
