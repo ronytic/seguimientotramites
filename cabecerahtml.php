@@ -10,11 +10,11 @@ $NombreUsuario=$us2['Nombres'];
 $PaternoUsuario=$us2['Paterno'];
 $MaternoUsuario=$us2['Materno'];
 switch($Nivel){
-    case 1:{$NivelUsuario="Administrador";}break;   
-    case 2:{$NivelUsuario="Gerente";}break;   
-    case 3:{$NivelUsuario="Administrador";}break;   
-    case 4:{$NivelUsuario="Vendedor";}break;      
-    case 4:{$NivelUsuario="Almacen";}break;    
+    case 1:{$NivelUsuario="Administrador";}break;
+    case 2:{$NivelUsuario="Gerente";}break;
+    case 3:{$NivelUsuario="Administrador";}break;
+    case 4:{$NivelUsuario="Vendedor";}break;
+    case 4:{$NivelUsuario="Almacen";}break;
 }
 
 include_once("configuracion.php");
@@ -35,8 +35,8 @@ $submenu=new submenu;
     <meta name="keywords" content="<?php php_start();?>" />
     <!-- Page title -->
     <title><?php echo $tituloSistema?></title>
-    
-    <link rel="shortcut icon" type="image/ico" href="<?php echo $folder?>imagenes/favicon_1.ico" />
+
+    <link rel="shortcut icon" type="image/ico" href="<?php echo $folder?>imagenes/icono.jpg" />
 
     <!-- Vendor styles -->
     <link rel="stylesheet" href="<?php echo $folder?>css/core/font-awesome.css" />
