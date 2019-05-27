@@ -13,7 +13,7 @@ $folder="../";
     <!-- Page title -->
     <title><?php echo $tituloSistema?></title>
 
-    <link rel="shortcut icon" type="image/ico" href="../favicon_1.ico" />
+    <link rel="shortcut icon" type="image/ico" href="../imagenes/icono.jpg" />
 
     <!-- Vendor styles -->
     <link rel="stylesheet" href="<?php echo $folder?>css/core/font-awesome.css" />
@@ -29,27 +29,20 @@ $folder="../";
 </head>
 <body class="blank">
 
-<!-- Simple splash screen-->
-<div class="splash"> <div class="color-line"></div><div class="splash-title"><h1>Homer - Responsive Admin Theme</h1><p>Special Admin Theme for small and medium webapp with very clean and aesthetic style and feel. </p><div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> </div> </div>
-<!--[if lt IE 7]>
-<p class="alert alert-danger">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-
-<div class="color-line"></div>
-
-
 
 <div class="login-container">
     <div class="row">
         <div class="col-md-12">
-            <div class="text-center m-b-md">
-                <h3><?php echo $tituloSistema?></h3>
-                <small><?php echo $lemaSistema?></small>
-            </div>
+
             <div class="hpanel">
                 <div class="panel-body">
+                <div class="text-center m-b-md">
+                <img src="../imagenes/logo/logo.png" alt="">
+                <!-- <h3><?php echo $tituloSistema?></h3> -->
+                <small><?php echo $lemaSistema?></small>
+            </div>
                         <?php if(isset($_GET['error'])){?>
-                        <div class="alert alert-info">
+                        <div class="alert alert-warning">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
                         <small>Los datos Introducidos son erroneos.</small>
                         </div>
@@ -76,16 +69,17 @@ $folder="../";
                             <button class="btn btn-success btn-block">Ingresar</button>
 
                         </form>
+                        <br>
+                        <div class="col-md-12 text-center">
+                        <small><strong>&copy; Todos los Derechos Reservados <?php echo date("Y");?></small>
+                            <!--<br> Sistema Realizado por <a href="http://fb.com/ronaldnina/" target="_blank">Ronald Nina Layme</a>--></strong>
+                        </div>
+
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <strong>&copy; Todos los Derechos Reservadors <?php echo date("Y");?>
-            <!--<br> Sistema Realizado por <a href="http://fb.com/ronaldnina/" target="_blank">Ronald Nina Layme</a>--></strong>
-        </div>
-    </div>
+
 </div>
 
 
