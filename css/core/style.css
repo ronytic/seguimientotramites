@@ -425,9 +425,9 @@ body.blank {
   background-color: #f1f3f6;
 }
 .login-container {
-  max-width: 420px;
+  max-width: 320px;
   margin: auto;
-  padding-top: 6%;
+  padding-top: 2%;
 }
 .register-container {
   max-width: 720px;
