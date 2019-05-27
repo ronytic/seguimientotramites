@@ -122,7 +122,7 @@
 <!-- Main Wrapper -->
 <div id="wrapper">
 
-    <div class="content animate-panel">
+    <div class="content animate-panel1">
         <div class="row">
             <div class="col-lg-12 text-center m-t-md">
                 <h2>
