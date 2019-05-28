@@ -1,5 +1,40 @@
 <?php
+function campo($nombre,$tipo="text",$valores="",$clase="",$required=0,$placeholder="",$autofocus=0,$adicional=array(),$valorseleccion=NULL,$seleccionar=0){
+	global $idioma;
+	if($tipo=="" && empty($tipo)){$tipo="text";}
+	if(empty($adicional) && $adicional==""){$adicional=array();}
 
+	switch($tipo){
+		case "textarea":{?>
+        	<textarea id="<?php echo $nombre;?>" name="<?php echo $nombre;?>" class="<?php echo $clase;?>" <?php echo $autofocus==1?'autofocus':'';?><?php foreach($adicional as $k=>$v){echo ' '.$k.'="'.$v.'"';}?> placeholder="<?php echo $placeholder;?>" <?php echo $required==1?'required="required"':'';?>><?php echo $valores?></textarea>
+			<?php }break;
+
+		case "select":{
+			?>
+        	<select id="<?php echo $nombre;?>" name="<?php echo $nombre;?>" <?php echo $autofocus==1?'autofocus':'';?><?php foreach($adicional as $k=>$v){echo ' '.$k.'="'.$v.'"';}?> class="<?php echo $clase;?>" <?php echo $required==1?'required="required"':'';?> placeholder="<?php echo $placeholder;?>">
+			  <?php  if($seleccionar==1){?><option value="" selected="selected" ><?php echo 'Seleccionar';?></option><?php }?>
+            	<?php if(count($valores)>0){foreach($valores as $k=>$v){?><option value="<?php echo $k;?>" <?php echo (string)$valorseleccion==(string)$k?'selected':'';?>><?php echo $v;?></option><?php }	}?>
+            </select>
+			<?php }break;
+
+		case "hidden":{
+            ?><input type="<?php echo $tipo;?>" id="<?php echo $nombre;?>" name="<?php echo $nombre;?>"<?php foreach($adicional as $k=>$v){echo ' '.$k.'="'.$v.'"';}?> value="<?php echo $valores;?>" class="<?php echo $clase;?>" <?php echo $required==1?'required="required"':'';?>/><?php
+			}break;
+
+		case "submit":{
+            ?><input type="<?php echo $tipo;?>" id="<?php echo $nombre;?>" name="<?php echo $nombre;?>"<?php foreach($adicional as $k=>$v){echo ' '.$k.'="'.$v.'"';}?> value="<?php echo $valores;?>" class="<?php echo $clase;?>" <?php echo $required==1?'required="required"':'';?>/><?php
+			}break;
+
+		case "checkbox":{
+            ?><input type="<?php echo $tipo;?>" id="<?php echo $nombre;?>" name="<?php echo $nombre;?>"<?php foreach($adicional as $k=>$v){echo ' '.$k.'="'.$v.'"';}?> value="<?php echo $valores;?>" <?php echo $valorseleccion==$valores?'checked="checked"':''?>class="<?php echo $clase;?>" <?php echo $required==1?'required="required"':'';?>/><?php
+			}break;
+
+		default:{
+			if(!is_array($valores))
+		?><input type="<?php echo $tipo;?>" id="<?php echo $nombre;?>" name="<?php echo $nombre;?>" <?php echo $autofocus==1?'autofocus':'';?><?php foreach($adicional as $k=>$v){echo ' '.$k.'="'.$v.'"';}?> placeholder="<?php echo $placeholder;?>" value="<?php echo $valores?>" class="<?php echo $clase;?>" <?php echo $required==1?'required="required"':'';?>/><?php
+		}break;
+	}
+}
 
 
 function listadotabla($titulo,$datos,$enlaces=0,$ver="",$modifica="",$elimina="",$botones="",$adicional="",$target="_self"){
@@ -181,7 +216,7 @@ function recortarTexto($texto, $limite=100,$terminador="..."){
 }
 
 
-function php_start($t=1){}
+function php_start($t=1){echo "<!--Sistema Desarrollador por Ronald Nina Cel: 73230568 -->";}
 function subirArchivo($archivo,$directorio="imagenes/",$tipo=array(),$adicionar=""){
 	global $folder;
 	$directorio=$folder.$directorio;
@@ -259,205 +294,7 @@ function eliminarEspaciosDobles($cadena,$caracteres=0){
 	$cadena = $caracteres?(preg_replace('/[\n\r\t]/', ' ', $cadena)):$cadena;
 	return $cadena;
 }
-function promedio($NotaTotal,$Cantidad,$Cifras=0){
-	return @ round($NotaTotal/$Cantidad,$Cifras);
-}
-function usuarioPadre($cipadre,$cimadre){
-	if($cipadre!="" && !ereg("---*",$cipadre)){
-		$usuarioP=$cipadre;
-		$usuarioP=trim($usuarioP);
-	}else{
-		$usuarioP=$cimadre;
-		$usuarioP=trim($usuarioP);
-	}
-	$usuario=mb_strtolower($usuarioP,"UTF-8");
-	$dato='';
-	for($j=0;$j<=strlen($usuario);$j++){
-		if(ereg("[0-9]",$usuario[$j]))
-		$dato.=$usuario[$j];
-	}
-	if(strlen($dato)==0){
-		$dato=usuarioPadre($dato,$cimadre);
-	}
-	return $dato;
-}
-function num2letras($num, $fem = false, $dec = true) {
-   $matuni[2]  = "dos";
-   $matuni[3]  = "tres";
-   $matuni[4]  = "cuatro";
-   $matuni[5]  = "cinco";
-   $matuni[6]  = "seis";
-   $matuni[7]  = "siete";
-   $matuni[8]  = "ocho";
-   $matuni[9]  = "nueve";
-   $matuni[10] = "diez";
-   $matuni[11] = "once";
-   $matuni[12] = "doce";
-   $matuni[13] = "trece";
-   $matuni[14] = "catorce";
-   $matuni[15] = "quince";
-   $matuni[16] = "dieciseis";
-   $matuni[17] = "diecisiete";
-   $matuni[18] = "dieciocho";
-   $matuni[19] = "diecinueve";
-   $matuni[20] = "veinte";
-   $matunisub[2] = "dos";
-   $matunisub[3] = "tres";
-   $matunisub[4] = "cuatro";
-   $matunisub[5] = "quin";
-   $matunisub[6] = "seis";
-   $matunisub[7] = "sete";
-   $matunisub[8] = "ocho";
-   $matunisub[9] = "nove";
 
-   $matdec[2] = "veint";
-   $matdec[3] = "treinta";
-   $matdec[4] = "cuarenta";
-   $matdec[5] = "cincuenta";
-   $matdec[6] = "sesenta";
-   $matdec[7] = "setenta";
-   $matdec[8] = "ochenta";
-   $matdec[9] = "noventa";
-   $matsub[3]  = 'mill';
-   $matsub[5]  = 'bill';
-   $matsub[7]  = 'mill';
-   $matsub[9]  = 'trill';
-   $matsub[11] = 'mill';
-   $matsub[13] = 'bill';
-   $matsub[15] = 'mill';
-   $matmil[4]  = 'millones';
-   $matmil[6]  = 'billones';
-   $matmil[7]  = 'de billones';
-   $matmil[8]  = 'millones de billones';
-   $matmil[10] = 'trillones';
-   $matmil[11] = 'de trillones';
-   $matmil[12] = 'millones de trillones';
-   $matmil[13] = 'de trillones';
-   $matmil[14] = 'billones de trillones';
-   $matmil[15] = 'de billones de trillones';
-   $matmil[16] = 'millones de billones de trillones';
-
-   //Zi hack
-   $float=explode('.',$num);
-   $num=$float[0];
-
-   $num = trim((string)@$num);
-   if ($num[0] == '-') {
-      $neg = 'menos ';
-      $num = substr($num, 1);
-   }else
-      $neg = '';
-   while ($num[0] == '0') $num = substr($num, 1);
-   if ($num[0] < '1' or $num[0] > 9) $num = '0' . $num;
-   $zeros = true;
-   $punt = false;
-   $ent = '';
-   $fra = '';
-   for ($c = 0; $c < strlen($num); $c++) {
-      $n = $num[$c];
-      if (! (strpos(".,'''", $n) === false)) {
-         if ($punt) break;
-         else{
-            $punt = true;
-            continue;
-         }
-
-      }elseif (! (strpos('0123456789', $n) === false)) {
-         if ($punt) {
-            if ($n != '0') $zeros = false;
-            $fra .= $n;
-         }else
-
-            $ent .= $n;
-      }else
-
-         break;
-
-   }
-   $ent = '     ' . $ent;
-   if ($dec and $fra and ! $zeros) {
-      $fin = ' coma';
-      for ($n = 0; $n < strlen($fra); $n++) {
-         if (($s = $fra[$n]) == '0')
-            $fin .= ' cero';
-         elseif ($s == '1')
-            $fin .= $fem ? ' una' : ' un';
-         else
-            $fin .= ' ' . $matuni[$s];
-      }
-   }else
-      $fin = '';
-   if ((int)$ent === 0) return 'Cero ' . $fin;
-   $tex = '';
-   $sub = 0;
-   $mils = 0;
-   $neutro = false;
-   while ( ($num = substr($ent, -3)) != '   ') {
-      $ent = substr($ent, 0, -3);
-      if (++$sub < 3 and $fem) {
-         $matuni[1] = 'una';
-         $subcent = 'as';
-      }else{
-         $matuni[1] = $neutro ? 'un' : 'uno';
-         $subcent = 'os';
-      }
-      $t = '';
-      $n2 = substr($num, 1);
-      if ($n2 == '00') {
-      }elseif ($n2 < 21)
-         $t = ' ' . $matuni[(int)$n2];
-      elseif ($n2 < 30) {
-         $n3 = $num[2];
-         if ($n3 != 0) $t = 'i' . $matuni[$n3];
-         $n2 = $num[1];
-         $t = ' ' . $matdec[$n2] . $t;
-      }else{
-         $n3 = $num[2];
-         if ($n3 != 0) $t = ' y ' . $matuni[$n3];
-         $n2 = $num[1];
-         $t = ' ' . $matdec[$n2] . $t;
-      }
-      $n = $num[0];
-      if ($n == 1) {
-         $t = ' ciento' . $t;
-      }elseif ($n == 5){
-         $t = ' ' . $matunisub[$n] . 'ient' . $subcent . $t;
-      }elseif ($n != 0){
-         $t = ' ' . $matunisub[$n] . 'cient' . $subcent . $t;
-      }
-      if ($sub == 1) {
-      }elseif (! isset($matsub[$sub])) {
-         if ($num == 1) {
-            $t = ' mil';
-         }elseif ($num > 1){
-            $t .= ' mil';
-         }
-      }elseif ($num == 1) {
-         $t .= ' ' . $matsub[$sub] . '?n';
-      }elseif ($num > 1){
-         $t .= ' ' . $matsub[$sub] . 'ones';
-      }
-      if ($num == '000') $mils ++;
-      elseif ($mils != 0) {
-         if (isset($matmil[$sub])) $t .= ' ' . $matmil[$sub];
-         $mils = 0;
-      }
-      $neutro = true;
-      $tex = $t . $tex;
-   }
-   $tex = $neg . substr($tex, 1) . $fin;
-   //Zi hack --> return ucfirst($tex);
-   //echo $float[1];
-   //echo ((int)$float[1]);
-   if(((int)$float[1])<10){
- 	    $decimal=((int)$float[1])."0";
-	}else{
-		$decimal=$float[1];
-	}
-    //echo $decimal;
-   $end_num=ucfirst($tex).'  '.$decimal.'/100';
-   return $end_num;
-}
 function cambiopalabra($numero){
 	switch($numero){
 		case "1":{$texto="Primera";}break;
