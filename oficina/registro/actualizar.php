@@ -5,6 +5,7 @@ include_once("../../class/oficina.php");
 $oficina=new oficina;
 
 $valores=array("nombre"=>"'$nombre'",
+                "telefonos"=>"'$telefonos'",
                 "descripcion"=>"'$descripcion'",
             );
 
