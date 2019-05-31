@@ -80,6 +80,7 @@ if(!empty($_POST)){
 			$logusuario->insertarRegistro($valuesLog,0);
 			$_SESSION['CodUsuarioLog']=$codUsuario;
 			$_SESSION['LoginSistemaSeguimiento']=1;
+			$_SESSION['CodOficina']=2;
 			$_SESSION['Nivel']=$Nivel;
 			header("Location:".$direccion);
 		}
