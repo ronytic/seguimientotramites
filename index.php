@@ -41,7 +41,7 @@ $Lema="";
     <div class="panel panel-warning">
           <div class="panel-heading ">
             <h5>
-              Instrucciones
+              Normas Internas
             </h5>
           </div>
           <div class="panel-body text-justify">
