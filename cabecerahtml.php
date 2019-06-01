@@ -1,8 +1,8 @@
 <?php
 $Nivel=$_SESSION['Nivel'];
 $CodUsuarioLog=$_SESSION['CodUsuarioLog'];
-include_once("class/usuario.php");
 
+include_once("class/usuario.php");
 $usuario2=new usuario;
 $us2=$usuario2->mostrarDatos($CodUsuarioLog);
 $us2=array_shift($us2);
@@ -16,6 +16,7 @@ switch($Nivel){
     case 4:{$NivelUsuario="Vendedor";}break;
     case 4:{$NivelUsuario="Almacen";}break;
 }
+
 
 include_once("configuracion.php");
 
