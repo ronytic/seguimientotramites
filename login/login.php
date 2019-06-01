@@ -72,7 +72,7 @@ if(!empty($_POST)){
 				"Lenguaje"=>"'$lenguaje'"
 			);
 			//echo "asd";
-			$CodigoOficina=$reeg['CodOficina'];
+			$CodigoOficina=$reg['CodOficina'];
 
 
 			$of=$oficina->mostrarTodoRegistro("codoficina=".$CodigoOficina);
