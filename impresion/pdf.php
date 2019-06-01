@@ -129,11 +129,11 @@ include_once("fpdf_protection.php");
 			if($this->CurOrientation=="P"||$this->OrientacionObligada=="L"){
 				$Resto=0;
 				$DatosReporteGenerado=utf8_decode('Reporte Generado').": ".date('d-m-Y H:i:s')." ";
-				$this->Cell(50,3,$DatosReporteGenerado,$BordePie,0,"L");
+				$this->Cell(0,3,$DatosReporteGenerado,$BordePie,0,"C");
 			}else{
 				$Resto=35;
 				$DatosReporteGenerado=utf8_decode('Reporte Generado').": ".date('d-m-Y H:i:s')." ".$DatosUsuario;
-				$this->Cell(90,3,$DatosReporteGenerado,$BordePie,0,"L");
+				$this->Cell(0,3,$DatosReporteGenerado,$BordePie,0,"C");
 			}
 
 			$this->Fuente("I",8);
