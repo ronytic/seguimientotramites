@@ -9,7 +9,9 @@ $codoficina=$_SESSION['CodOficina'];
 $of=todolista($oficina->mostrarTodoRegistro("codoficina!=$codoficina"),"codoficina","nombre");
 
 $est=array("0"=>"Pendiente","1"=>"Revisado");
-
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
 include_once("../../cabecerahtml.php");
 ?>
 <?php include_once("../../cabecera.php");?>
