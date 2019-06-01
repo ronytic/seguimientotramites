@@ -31,9 +31,6 @@ if(!empty($_POST)){
 		$pass=$_POST['pass'];
 
 //		$usuario=str_replace("ñ","n",$usuario);
-		$usuarioAl=str_replace(array("ñ","Ñ"),array("n","N"),$usuario);
-		$usuarioAl=strtolower($usuarioAl);
-	//	echo $usuarioAl;
 
 		$agente=$_SERVER['HTTP_USER_AGENT'];
 		$ip=$_SERVER['REMOTE_ADDR'];
@@ -75,7 +72,7 @@ if(!empty($_POST)){
 				"Lenguaje"=>"'$lenguaje'"
 			);
 			//echo "asd";
-			$CodigoOficina=1;
+			$CodigoOficina=$reeg['CodOficina'];
 
 
 			$of=$oficina->mostrarTodoRegistro("codoficina=".$CodigoOficina);
