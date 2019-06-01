@@ -51,7 +51,7 @@ $(document).ready(function(){
         </tr>
         <tr>
             <td class="text-right">Tipo de Documento</td>
-            <td><select name="tipodocumento" class="form-control" >
+            <td><select name="tipodocumento" class="form-control"  required>
                     <option value="">Seleccionar Tipo de Documento</option>
                     <option value="contrato">Contrato</option>
                     <option value="planimetria">Planimetria y otros</option>
