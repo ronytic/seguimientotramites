@@ -11,10 +11,9 @@ $PaternoUsuario=$us2['Paterno'];
 $MaternoUsuario=$us2['Materno'];
 switch($Nivel){
     case 1:{$NivelUsuario="Administrador";}break;
-    case 2:{$NivelUsuario="Gerente";}break;
-    case 3:{$NivelUsuario="Administrador";}break;
-    case 4:{$NivelUsuario="Vendedor";}break;
-    case 4:{$NivelUsuario="Almacen";}break;
+    case 2:{$NivelUsuario="MAE";}break;
+    case 3:{$NivelUsuario="Subdirección";}break;
+    case 4:{$NivelUsuario="Recepción";}break;
 }
 
 
