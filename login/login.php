@@ -9,12 +9,10 @@ if(!empty($_POST)){
 
 	include_once("../configuracion.php");
 	include_once("../class/usuario.php");
-	/*include_once("../class/alumno.php");
-	include_once("../class/docente.php");*/
+	include_once("../class/oficina.php");
 	include_once("../class/logusuario.php");
+	$oficina=new oficina;
 	$usu=new usuario;
-	/*$alumno=new alumno;
-	$docente=new docente;*/
 	$logusuario=new logusuario;
 
 	$url=$_POST['u'];
@@ -76,11 +74,17 @@ if(!empty($_POST)){
 				"Referencia"=>"'$referencia'",
 				"Lenguaje"=>"'$lenguaje'"
 			);
-            //echo "asd";
+			//echo "asd";
+			$CodigoOficina=1;
+
+
+			$of=$oficina->mostrarTodoRegistro("codoficina=".$CodigoOficina);
+			$of=array_shift($of);
 			$logusuario->insertarRegistro($valuesLog,0);
 			$_SESSION['CodUsuarioLog']=$codUsuario;
 			$_SESSION['LoginSistemaSeguimiento']=1;
-			$_SESSION['CodOficina']=2;
+			$_SESSION['CodOficina']=$CodigoOficina;
+			$_SESSION['NombreOficina']=$of['nombre'];
 			$_SESSION['Nivel']=$Nivel;
 			header("Location:".$direccion);
 		}
