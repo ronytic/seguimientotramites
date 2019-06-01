@@ -89,7 +89,7 @@ class bd{
 			$nombretabla=mb_strtolower($this->tabla,"utf8");
 		}
 		$query ="SELECT $camposs FROM {$nombretabla} $where $group $order $count";
-		//echo $query."<br>";
+		// echo $query."<br>";
 		return $this->sql ($query);
 	}
 	public function getRecord ($id)
