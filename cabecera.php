@@ -70,6 +70,8 @@
                 <div>
 
                     <small class="text-muted"><?php echo $NivelUsuario;?></small>
+                    <br>
+                    <small class="text-muted"><?php echo $_SESSION['NombreOficina'];?></small>
                 </div>
 
                 <!--<div class="dropdown">
