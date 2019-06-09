@@ -22,23 +22,25 @@ include_once("fpdf_protection.php");
 			global $title,$gestion,$titulo,$logo,$idioma;
 			$fecha=capitalizar(strftime("%A, %d "))." de ".capitalizar(strftime(" %B "))." de ".strftime(" %Y");
 			$tam=10;
-			$this->Image("../../imagenes/logo/".$logo,10,10,40,40);
+			//$this->Image("../../imagenes/logo/".$logo,10,10,40,40);
+			$this->Image("../../imagenes/membrete.jpg",0,0,216,295);
 			$this->Fuente("B",$tam);
-			$this->SetXY(34,12);
+			$this->SetXY(34,38);
 			$this->Cell(70,4,utf8_decode($title),0,0,"L");
 			$this->Fuente("B",8);
 			$this->SetXY(34,16);
 			$this->Cell(70,4,utf8_decode($gestion),0,0,"L");
 			$this->ln(10);
 			$this->Fuente("B",18);
-			$this->Cell($this->ancho,4,utf8_decode($titulo),0,5,"C");
-			$this->ln(5);
+			$this->SetXY(10,60);
+			$this->Cell(0,4,utf8_decode($titulo)."",0,5,"C");
+			$this->ln(0);
 
 
 			if(in_array("Cabecera",get_class_methods($this))){
 				$this->Cabecera();
 			}
-			$this->ln(15);
+			$this->ln(5);
 
 			$this->Cell($this->ancho,0,"",1,1);
 			$this->Ln(0.1);
@@ -120,20 +122,20 @@ include_once("fpdf_protection.php");
 			$DatosUsuario=capitalizar($DatosGenerador['TipoUsuario'].", ".$DatosGenerador['Paterno']." ".$DatosGenerador['Materno']." ".$DatosGenerador['Nombres']);
 
 			// Posición: a 1,5 cm del final
-			$this->SetY(-15);
+			$this->SetY(-25);
 			// Arial italic 8
 
 			$BordePie=0;
 			$this->Fuente("I",7.5);
-			$this->Cell($this->ancho,0,"",1,1);
+			//$this->Cell($this->ancho,0,"",1,1);
 			if($this->CurOrientation=="P"||$this->OrientacionObligada=="L"){
 				$Resto=0;
 				$DatosReporteGenerado=utf8_decode('Reporte Generado').": ".date('d-m-Y H:i:s')." ";
-				$this->Cell(0,3,$DatosReporteGenerado,$BordePie,0,"C");
+				$this->Cell(0,3,$DatosReporteGenerado,$BordePie,0,"R");
 			}else{
 				$Resto=35;
 				$DatosReporteGenerado=utf8_decode('Reporte Generado').": ".date('d-m-Y H:i:s')." ".$DatosUsuario;
-				$this->Cell(0,3,$DatosReporteGenerado,$BordePie,0,"C");
+				$this->Cell(0,3,$DatosReporteGenerado,$BordePie,0,"R");
 			}
 
 			$this->Fuente("I",8);

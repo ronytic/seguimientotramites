@@ -12,7 +12,7 @@ $hr=array_shift($hr);
 
 
 
-$url="reporte".$hr['tipodocumento'].".php?codigo=".$hr['codigo'];
+$url="reporte".$hr['tipodocumento'].".php?cod=$Cod&codigo=".$hr['codigo'];
 
 include_once("../../cabecerahtml.php");
 ?>
