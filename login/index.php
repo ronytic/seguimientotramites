@@ -66,7 +66,7 @@ $folder="../";
 
                             </div>
 
-                            <button class="btn btn-success btn-block">Ingresar</button>
+                            <button class="btn btn-warning btn-block">Ingresar</button>
 
                         </form>
                         <br>

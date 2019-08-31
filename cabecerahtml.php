@@ -14,6 +14,7 @@ switch($Nivel){
     case 2:{$NivelUsuario="MAE";}break;
     case 3:{$NivelUsuario="Subdirección";}break;
     case 4:{$NivelUsuario="Recepción";}break;
+    //case 5:
 }
 
 

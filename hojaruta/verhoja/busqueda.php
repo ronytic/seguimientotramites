@@ -64,10 +64,10 @@ if(count($hojar)==0){
         <td><?=$hr['fechadestino'];?></td>
         <td><span class="badge badge-default"><?=$estadodestino;?></span></td>
         <td>
-            <a href="../registro/reporte.php?Cod=<?=$hr['codhojaruta'];?>" class="btn btn-info btn-xs">Ver Hoja de Ruta</a>
+            <a href="ver.php?Cod=<?=$hr['codhojaruta'];?>" class="btn btn-info btn-xs">Ver Hoja de Ruta</a>
         </td>
         <td>
-            <a href="reporte.php?Cod=<?=$hr['codhojaruta'];?>" class="btn btn-danger btn-xs">Ver Reporte</a>
+            <a href="../registro/reporte.php?Cod=<?=$hr['codhojaruta'];?>" class="btn btn-danger btn-xs">Ver Reporte</a>
         </td>
         </tr>
         <?php
