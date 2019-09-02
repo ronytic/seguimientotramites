@@ -1,42 +1,40 @@
 <?php
-include_once("../../login/check.php");
-$folder="../../";
-$titulo="Modificar Datos del Personal";
-$Cod=$_GET['Cod'];
+include_once "../../login/check.php";
+$folder = "../../";
+$titulo = "Modificar Datos del Personal";
+$Cod = $_GET['Cod'];
 
-include_once("../../class/usuario.php");
-$usu=new usuario;
-$u=$usu->mostrarTodoRegistro("CodUsuario=".$Cod);
-$u=array_shift($u);
+include_once "../../class/usuario.php";
+$usu = new usuario;
+$u = $usu->mostrarTodoRegistro("CodUsuario=" . $Cod);
+$u = array_shift($u);
 
+$Niveles = array("2" => "MAE", "3" => "Comisión/Unidad", "4" => "Recepción");
 
-$Niveles=array("2"=>"MAE","3"=>"SubDirección","4"=>"Recepción");
+include_once "../../class/oficina.php";
+$oficina = new oficina;
+$of = todolista($oficina->mostrarTodoRegistro(), "codoficina", "nombre");
 
-include_once("../../class/oficina.php");
-$oficina=new oficina;
-$of=todolista($oficina->mostrarTodoRegistro(),"codoficina","nombre");
-
-
-include_once("../../cabecerahtml.php");
+include_once "../../cabecerahtml.php";
 ?>
-<?php include_once("../../cabecera.php");?>
+<?php include_once "../../cabecera.php";?>
 <div class="col-lg-12">
     <form action="actualizar.php" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="cod" value="<?php echo $Cod;?>">
+    <input type="hidden" name="cod" value="<?php echo $Cod; ?>">
     <table class="table tables table-bordereds table-hovers">
         <tr class="">
             <td class="text-right">Oficina</td>
             <td>
                 <?php
-                    campo("CodOficina","select",$of,"form-control",0,"",0,"",$u['CodOficina'],1)
-                ?>
+campo("CodOficina", "select", $of, "form-control", 0, "", 0, "", $u['CodOficina'], 1)
+?>
             </td>
         </tr>
         <tr class="">
             <td class="text-right">Nivel de Acceso</td>
             <td><?php
-                    campo("Nivel","select",$Niveles,"form-control",0,"",0,"",$u['Nivel'],1)
-                ?></td>
+campo("Nivel", "select", $Niveles, "form-control", 0, "", 0, "", $u['Nivel'], 1)
+?></td>
         </tr>
 
 
@@ -93,4 +91,4 @@ include_once("../../cabecerahtml.php");
     </table>
     </form>
 </div>
-<?php include_once("../../pie.php");?>
+<?php include_once "../../pie.php";?>

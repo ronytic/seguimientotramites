@@ -1,0 +1,37 @@
+.text-muted{
+    color:#FFF;
+}
+#side-menu{
+    background-color: transparent;
+    color: #FFF;
+}
+#side-menu li a{
+    color: #FFF;
+}
+#side-menu li:hover a{
+    color: #FFF;
+    background-color: #029e50 !important;
+}
+#side-menu li .nav-second-level li a{
+    color: #FFF;
+}
+#side-menu li.active{
+    background-color: #029e50 !important;
+}
+#side-menu li.active a, #side-menu li:hover a {
+    color: #FFF;
+}
+#side-menu.nav > li > a:hover, #side-menu.nav > li > a:focus{
+    background-color: #029e50 !important;
+}
+.color-line{
+    background-color: #d81e05;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    color:#029e50;
+}
+
+.nav > li > a:hover, .nav > li > a:focus {
+    background-color: #029e50 !important;
+}

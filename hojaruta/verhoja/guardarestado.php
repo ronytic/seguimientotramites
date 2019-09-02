@@ -1,20 +1,19 @@
 <?php
-include_once("../../login/check.php");
+include_once "../../login/check.php";
 
-if(isset($_POST)){
+if (isset($_POST)) {
     extract($_POST);
 
-    include_once("../../class/hojaruta.php");
-    $hojaruta=new hojaruta;
+    include_once "../../class/hojaruta.php";
+    $hojaruta = new hojaruta;
 
+    $valores = array("estadodestino" => "'$estado'",
+        "fechadestino" => "'" . date("Y-m-d") . "'",
+        "horadestino" => "'" . date("H:i:s") . "'",
+        "observacion" => "'$observacion'",
+    );
 
-    $valores=array("estadodestino"=>"'$estado'",
-                    "fechadestino"=>"'".date("Y-m-d")."'",
-                    "horadestino"=>"'".date("H:i:s")."'",
-                    );
-
-    $hojaruta->actualizarRegistro($valores,"codhojaruta=".$codhojaruta);
+    $hojaruta->actualizarRegistro($valores, "codhojaruta=" . $codhojaruta);
 
 }
-header("location:ver.php?Cod=".$codhojaruta);
-?>
+header("location:ver.php?Cod=" . $codhojaruta);

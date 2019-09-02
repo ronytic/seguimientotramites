@@ -1,19 +1,19 @@
 <?php
-include_once("../../login/check.php");
+include_once "../../login/check.php";
 extract($_POST);
 
-$nrohoja=$nrohoja!=""?$nrohoja:"%";
-$tipodocumento=$tipodocumento!=""?$tipodocumento:"%";
-$codoficinaorigen=$codoficinaorigen!=""?$codoficinaorigen:"%";
-$codoficinadestino=$codoficinadestino!=""?$codoficinadestino:"%";
+$nrohoja = $nrohoja != "" ? $nrohoja : "%";
+$tipodocumento = $tipodocumento != "" ? $tipodocumento : "%";
+$codoficinaorigen = $codoficinaorigen != "" ? $codoficinaorigen : "%";
+$codoficinadestino = $codoficinadestino != "" ? $codoficinadestino : "%";
 
-include_once("../../class/hojaruta.php");
-$hojaruta=new hojaruta;
+include_once "../../class/hojaruta.php";
+$hojaruta = new hojaruta;
 
-include_once("../../class/oficina.php");
-$oficina=new oficina;
+include_once "../../class/oficina.php";
+$oficina = new oficina;
 
-$hojar=$hojaruta->mostrarTodoRegistro("codhojaruta LIKE '$nrohoja' and tipodocumento LIKE '$tipodocumento' and codoficinaorigen LIKE '$codoficinaorigen' and codoficinadestino LIKE '$codoficinadestino'",1,"");
+$hojar = $hojaruta->mostrarTodoRegistro("codhojaruta LIKE '$nrohoja' and tipodocumento LIKE '$tipodocumento' and codoficinaorigen LIKE '$codoficinaorigen' and codoficinadestino LIKE '$codoficinadestino'", 1, "");
 // echo "<pre>";
 // print_r($hojar);
 // echo "</pre>";
@@ -32,18 +32,20 @@ $hojar=$hojaruta->mostrarTodoRegistro("codhojaruta LIKE '$nrohoja' and tipodocum
     </tr>
 </thead>
 <?php
-    $i=0;
-    foreach($hojar as $hr){$i++;
+$i = 0;
+$Nivel = $_SESSION['Nivel'];
+foreach ($hojar as $hr) {$i++;
 
-        $ofo=$oficina->mostrarTodoRegistro("codoficina=".$hr['codoficinaorigen']);
-        $ofo=array_shift($ofo);
-        $ofd=$oficina->mostrarTodoRegistro("codoficina=".$hr['codoficinadestino']);
-        $ofd=array_shift($ofd);
-        switch($hr['tipodocumento']){
-            case 'planimetria':{$tipodoc="Planimetria";}break;
-            case 'contrato':{$tipodoc="Contrato";}break;
-        }
-        ?>
+    $ofo = $oficina->mostrarTodoRegistro("codoficina=" . $hr['codoficinaorigen']);
+    $ofo = array_shift($ofo);
+    $ofd = $oficina->mostrarTodoRegistro("codoficina=" . $hr['codoficinadestino']);
+    $ofd = array_shift($ofd);
+    switch ($hr['tipodocumento']) {
+        case 'planimetria':{ $tipodoc = "Planimetria";}break;
+        case 'contrato':{ $tipodoc = "Contrato";}break;
+        case 'otros':{ $tipodoc = "Otros";}break;
+    }
+    ?>
         <tr>
         <td width="10"><?=$i;?></td>
         <td class="text-right"><?=$hr['codhojaruta'];?></td>
@@ -52,15 +54,21 @@ $hojar=$hojaruta->mostrarTodoRegistro("codhojaruta LIKE '$nrohoja' and tipodocum
         <td><?=$hr['fechaorigen'];?></td>
         <td><?=$ofd['nombre'];?></td>
         <td><?=$hr['fechadestino'];?></td>
+        <?php if (in_array($Nivel, array(1, 2))) {
+        ?>
+
         <td>
             <a href="modificar.php?Cod=<?=$hr['codhojaruta'];?>" class="btn btn-warning btn-xs">Modificar</a>
         </td>
+        <?php
+}
+    ?>
         <td>
             <a href="reporte.php?Cod=<?=$hr['codhojaruta'];?>" class="btn btn-danger btn-xs">Ver Reporte</a>
         </td>
         </tr>
         <?php
-    }
+}
 ?>
 <tr>
 </tr>

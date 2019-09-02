@@ -1,40 +1,39 @@
 <?php
-include_once("../../login/check.php");
-$folder="../../";
+include_once "../../login/check.php";
+$folder = "../../";
 
+include_once "../../class/oficina.php";
+$oficina = new oficina;
+$of = todolista($oficina->mostrarTodoRegistro(), "codoficina", "nombre");
 
-include_once("../../class/oficina.php");
-$oficina=new oficina;
-$of=todolista($oficina->mostrarTodoRegistro(),"codoficina","nombre");
+$Niveles = array("2" => "MAE", "3" => "Comisión/Unidad", "4" => "Recepción");
 
-$Niveles=array("2"=>"MAE","3"=>"SubDirección","4"=>"Recepción");
-
-$titulo="Registro de Nuevo Personal";
+$titulo = "Registro de Nuevo Personal";
 // echo "<pre>";
 // print_r($_SESSION);
 // echo "</pre>";
 // exit();
-include_once("../../cabecerahtml.php");
+include_once "../../cabecerahtml.php";
 ?>
 
 
-<?php include_once("../../cabecera.php");?>
+<?php include_once "../../cabecera.php";?>
 <div class="col-lg-12">
-    <form action="guardar.php" method="post" enctype="multipart/form-data">
+    <form action="guardar.php" method="post" enctype="multipart/form-data" >
     <table class="table tables table-bordereds table-hovers">
         <tr class="">
             <td class="text-right">Oficina</td>
             <td>
                 <?php
-                    campo("CodOficina","select",$of,"form-control",0,"",0,"",null,1)
-                ?>
+campo("CodOficina", "select", $of, "form-control", 0, "", 0, "", null, 1)
+?>
             </td>
         </tr>
         <tr class="">
             <td class="text-right">Nivel de Acceso</td>
             <td><?php
-                    campo("Nivel","select",$Niveles,"form-control",0,"",0,"",null,1)
-                ?></td>
+campo("Nivel", "select", $Niveles, "form-control", 0, "", 0, "", null, 1)
+?></td>
         </tr>
 
 
@@ -91,4 +90,4 @@ include_once("../../cabecerahtml.php");
     </table>
     </form>
 </div>
-<?php include_once("../../pie.php");?>
+<?php include_once "../../pie.php";?>

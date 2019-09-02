@@ -1,25 +1,25 @@
 <?php
-include_once("../../login/check.php");
+include_once "../../login/check.php";
 extract($_POST);
 
-$nrohoja=$nrohoja!=""?$nrohoja:"%";
-$tipodocumento=$tipodocumento!=""?$tipodocumento:"%";
-$codoficinaorigen=$codoficinaorigen!=""?$codoficinaorigen:"%";
-$codoficinadestino=$_SESSION['CodOficina'];
+$nrohoja = $nrohoja != "" ? $nrohoja : "%";
+$tipodocumento = $tipodocumento != "" ? $tipodocumento : "%";
+$codoficinaorigen = $codoficinaorigen != "" ? $codoficinaorigen : "%";
+$codoficinadestino = $_SESSION['CodOficina'];
 
-include_once("../../class/hojaruta.php");
-$hojaruta=new hojaruta;
+include_once "../../class/hojaruta.php";
+$hojaruta = new hojaruta;
 
-include_once("../../class/oficina.php");
-$oficina=new oficina;
+include_once "../../class/oficina.php";
+$oficina = new oficina;
 
-$hojar=$hojaruta->mostrarTodoRegistro("codhojaruta LIKE '$nrohoja' and tipodocumento LIKE '$tipodocumento' and codoficinaorigen LIKE '$codoficinaorigen' and codoficinadestino LIKE '$codoficinadestino' and estadodestino=$estado",1,"");
+$hojar = $hojaruta->mostrarTodoRegistro("codhojaruta LIKE '$nrohoja' and tipodocumento LIKE '$tipodocumento' and codoficinaorigen LIKE '$codoficinaorigen' and codoficinadestino LIKE '$codoficinadestino' and estadodestino=$estado", 1, "");
 // echo "<pre>";
 // print_r($hojar);
 // echo "</pre>";
 // listadotabla(array("nombre"=>"Nombre","telefonos"=>"Teléfonos","descripcion"=>"Descripción"),$ofi,1,"","modificar.php","eliminar.php");
 // echo $_SESSION['CodOficina'];
-if(count($hojar)==0){
+if (count($hojar) == 0) {
     die("No se encontraron hojas de rutas con el criterio buscado");
 }
 ?>
@@ -38,22 +38,23 @@ if(count($hojar)==0){
 </thead>
 <?php
 
-    $i=0;
-    foreach($hojar as $hr){$i++;
+$i = 0;
+foreach ($hojar as $hr) {$i++;
 
-        $ofo=$oficina->mostrarTodoRegistro("codoficina=".$hr['codoficinaorigen']);
-        $ofo=array_shift($ofo);
-        $ofd=$oficina->mostrarTodoRegistro("codoficina=".$hr['codoficinadestino']);
-        $ofd=array_shift($ofd);
-        switch($hr['tipodocumento']){
-            case 'planimetria':{$tipodoc="Planimetria";}break;
-            case 'contrato':{$tipodoc="Contrato";}break;
-        }
-        switch($hr['estadodestino']){
-            case 0:{$estadodestino="Pendiente";}break;
-            case 1:{$estadodestino="Confirmado Recepción";}break;
-        }
-        ?>
+    $ofo = $oficina->mostrarTodoRegistro("codoficina=" . $hr['codoficinaorigen']);
+    $ofo = array_shift($ofo);
+    $ofd = $oficina->mostrarTodoRegistro("codoficina=" . $hr['codoficinadestino']);
+    $ofd = array_shift($ofd);
+    switch ($hr['tipodocumento']) {
+        case 'planimetria':{ $tipodoc = "Planimetria";}break;
+        case 'contrato':{ $tipodoc = "Contrato";}break;
+        case 'otros':{ $tipodoc = "Otros";}break;
+    }
+    switch ($hr['estadodestino']) {
+        case 0:{ $estadodestino = "Pendiente";}break;
+        case 1:{ $estadodestino = "Confirmado Recepción";}break;
+    }
+    ?>
         <tr>
         <td width="10"><?=$i;?></td>
         <td class="text-right"><?=$hr['codhojaruta'];?></td>
@@ -71,7 +72,7 @@ if(count($hojar)==0){
         </td>
         </tr>
         <?php
-    }
+}
 ?>
 <tr>
 </tr>

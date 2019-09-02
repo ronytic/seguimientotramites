@@ -1,69 +1,71 @@
 <?php
-include_once("../../login/check.php");
-$folder="../../";
-$titulo="Hoja de Ruta";
-$Cod=$_GET['Cod'];
+include_once "../../login/check.php";
+$folder = "../../";
+$titulo = "Hoja de Ruta";
+$Cod = $_GET['Cod'];
 
-include_once("../../class/hojaruta.php");
-$hojaruta=new hojaruta;
-$hr=$hojaruta->mostrarTodoRegistro("codhojaruta=".$Cod);
-$hr=array_shift($hr);
+include_once "../../class/hojaruta.php";
+$hojaruta = new hojaruta;
+$hr = $hojaruta->mostrarTodoRegistro("codhojaruta=" . $Cod);
+$hr = array_shift($hr);
 
-switch($hr['tipodocumento']){
-    case 'planimetria':{$tipodocnombre="Planimetria";$ClaseDocOculto="contrato";}break;
-    case 'contrato':{$tipodocnombre="Contrato";$ClaseDocOculto="planimetria";}break;
+switch ($hr['tipodocumento']) {
+    case 'planimetria':{ $tipodocnombre = "Planimetria";
+            $ClaseDocOculto = "contrato";}break;
+    case 'contrato':{ $tipodocnombre = "Contrato";
+            $ClaseDocOculto = "planimetria";}break;
+    case 'otros':{ $tipodocnombre = "Otros";
+            $ClaseDocOculto = "contrato";}break;
 }
 
-switch($hr['estadodestino']){
-    case 0:{$estadodestino="Pendiente";}break;
-    case 1:{$estadodestino="Recibido";}break;
+switch ($hr['estadodestino']) {
+    case 0:{ $estadodestino = "Pendiente";}break;
+    case 1:{ $estadodestino = "Recibido";}break;
 }
 
-include_once("../../class/contrato.php");
-$contrato=new contrato;
+include_once "../../class/contrato.php";
+$contrato = new contrato;
 
-include_once("../../class/planimetria.php");
-$planimetria=new planimetria;
+include_once "../../class/planimetria.php";
+$planimetria = new planimetria;
 
-if($hr['tipodocumento']=="contrato"){
-    $con=$contrato->mostrarTodoRegistro("codcontrato=".$hr['codigo']);
-    $c=array_shift($con);
+if ($hr['tipodocumento'] == "contrato") {
+    $con = $contrato->mostrarTodoRegistro("codcontrato=" . $hr['codigo']);
+    $c = array_shift($con);
 
-    $pla=$planimetria->mostrarTodoRegistro("codplanimetria=-100");
-    $p=array_shift($pla);
-}else{
-    $pla=$planimetria->mostrarTodoRegistro("codplanimetria=".$hr['codigo']);
-    $p=array_shift($pla);
+    $pla = $planimetria->mostrarTodoRegistro("codplanimetria=-100");
+    $p = array_shift($pla);
+} else {
+    $pla = $planimetria->mostrarTodoRegistro("codplanimetria=" . $hr['codigo']);
+    $p = array_shift($pla);
 
-    $con=$contrato->mostrarTodoRegistro("codcontrato=-100");
-    $c=array_shift($con);
+    $con = $contrato->mostrarTodoRegistro("codcontrato=-100");
+    $c = array_shift($con);
 }
 
-include_once("../../class/oficina.php");
-$oficina=new oficina;
+include_once "../../class/oficina.php";
+$oficina = new oficina;
 
-$ofo=$oficina->mostrarTodoRegistro("codoficina=".$hr['codoficinaorigen']);
-$ofo=array_shift($ofo);
-$ofd=$oficina->mostrarTodoRegistro("codoficina=".$hr['codoficinadestino']);
-$ofd=array_shift($ofd);
+$ofo = $oficina->mostrarTodoRegistro("codoficina=" . $hr['codoficinaorigen']);
+$ofo = array_shift($ofo);
+$ofd = $oficina->mostrarTodoRegistro("codoficina=" . $hr['codoficinadestino']);
+$ofd = array_shift($ofd);
 
+$of = todolista($oficina->mostrarTodoRegistro(), "codoficina", "nombre");
 
-$of=todolista($oficina->mostrarTodoRegistro(),"codoficina","nombre");
+include_once "../../class/tipocontrato.php";
+$tipocontrato = new tipocontrato;
+$tipocon = ($tipocontrato->mostrarTodoRegistro("codtipocontrato=" . $c['contratocodtipocontrato']));
+$tipocon = array_shift($tipocon);
 
-include_once("../../class/tipocontrato.php");
-$tipocontrato=new tipocontrato;
-$tipocon=($tipocontrato->mostrarTodoRegistro("codtipocontrato=".$c['contratocodtipocontrato']));
-$tipocon=array_shift($tipocon);
+include_once "../../class/tipodocumento.php";
+$tipodocumento = new tipodocumento;
+$tipodoc = ($tipodocumento->mostrarTodoRegistro("codtipodocumento=" . $p['planimetriacodtipodocumento']));
+$tipodoc = array_shift($tipodoc);
 
+$est = array(0 => "Pendiente", 1 => "Recibido");
 
-include_once("../../class/tipodocumento.php");
-$tipodocumento=new tipodocumento;
-$tipodoc=($tipodocumento->mostrarTodoRegistro("codtipodocumento=".$p['planimetriacodtipodocumento']));
-$tipodoc=array_shift($tipodoc);
-
-$est=array(0=>"Pendiente",1=>"Recibido");
-
-include_once("../../cabecerahtml.php");
+include_once "../../cabecerahtml.php";
 ?>
 <style>
 .<?=$ClaseDocOculto;?>{
@@ -80,7 +82,7 @@ $(document).ready(function(){
     });
 });
 </script>
-<?php include_once("../../cabecera.php");?>
+<?php include_once "../../cabecera.php";?>
 <div class="col-lg-12">
 
 
@@ -198,8 +200,10 @@ $(document).ready(function(){
                     <form action="guardarestado.php" method="post">
                         <input type="hidden" name="codhojaruta" value="<?=$Cod;?>">
                         <?php
-                            campo("estado","select",$est,"form-control",0,"",0,"",$hr['estadodestino'],0)
-                        ?>
+campo("estado", "select", $est, "form-control", 0, "", 0, "", $hr['estadodestino'], 0)
+?>
+                <br>
+                <textarea type="text" name="observacion"  class="form-control" placeholder="Observación"><?=$hr['observacion'];?></textarea>
                         <br>
                         <input type="submit" value="Cambiar Estado" class="btn btn-warning btn-xss">
                     </form>
@@ -211,8 +215,9 @@ $(document).ready(function(){
                     <form action="enviar.php" method="post" id="guardarenvio">
                         <input type="hidden" name="codhojaruta" value="<?=$Cod;?>">
                         <?php
-                            campo("codoficinadestino","select",$of,"form-control",0,"",0,"",null,1)
-                        ?>
+campo("codoficinadestino", "select", $of, "form-control", 0, "", 0, "", null, 1)
+?>
+
                         <br>
                         <input type="submit" value="Enviar a otra oficina" class="btn btn-warning btn-xss">
                     </form>
@@ -222,4 +227,4 @@ $(document).ready(function(){
     </div>
 
 </div>
-<?php include_once("../../pie.php");?>
+<?php include_once "../../pie.php";?>

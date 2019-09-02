@@ -1,17 +1,17 @@
 <?php
-include_once("../../login/check.php");
-$folder="../../";
-$titulo="Listado de Hojas de Rutas";
+include_once "../../login/check.php";
+$folder = "../../";
+$titulo = "Listado de Hojas de Rutas";
 
-include_once("../../class/oficina.php");
-$oficina=new oficina;
-$of=todolista($oficina->mostrarTodoRegistro(),"codoficina","nombre");
+include_once "../../class/oficina.php";
+$oficina = new oficina;
+$of = todolista($oficina->mostrarTodoRegistro(), "codoficina", "nombre");
 
-$Niveles=array("2"=>"MAE","3"=>"SubDirección","4"=>"Recepción");
+$Niveles = array("2" => "MAE", "3" => "Comisión/Unidad", "4" => "Recepción");
 
-include_once("../../cabecerahtml.php");
+include_once "../../cabecerahtml.php";
 ?>
-<?php include_once("../../cabecera.php");?>
+<?php include_once "../../cabecera.php";?>
 <div class="col-lg-12">
     <form action="busqueda.php" method="post" class="formulariobusqueda" data-respuesta="respuestaformulario">
     <table class="table tables ">
@@ -22,14 +22,14 @@ include_once("../../cabecerahtml.php");
             <td class="text-center">
                 Oficina
                 <?php
-                    campo("CodOficina","select",$of,"form-control",0,"",0,"",null,1)
-                ?>
+campo("CodOficina", "select", $of, "form-control", 0, "", 0, "", null, 1)
+?>
             </td>
             <td class="text-center">
                 Nivel de Acceso
                 <?php
-                    campo("Nivel","select",$Niveles,"form-control",0,"",0,"",null,1)
-                ?>
+campo("Nivel", "select", $Niveles, "form-control", 0, "", 0, "", null, 1)
+?>
             </td>
         </tr>
         <tr>
@@ -49,4 +49,4 @@ include_once("../../cabecerahtml.php");
         <div class="col-lg-12 table-responsive" id="respuestaformulario">
 
         </div>
-<?php include_once("../../pie.php");?>
+<?php include_once "../../pie.php";?>

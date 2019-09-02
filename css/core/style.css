@@ -1530,6 +1530,8 @@ body {
   z-index: 10001;
   overflow: hidden !important;
   transition: all 0.4s ease 0s;
+  background-color: #007a3d;
+  color:#FFF;
 }
 #wrapper {
   margin: 0 0 0 180px;
