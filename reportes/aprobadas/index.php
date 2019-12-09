@@ -21,7 +21,7 @@ include_once "../../cabecerahtml.php";
         <tr>
             <td class="text-center">
             Tipo de Documento
-                <select name="tipodocumento" class="form-control" >
+                <select name="tipodocumento" class="form-control"  required>
                     <option value="">Seleccionar Tipo de Documento</option>
                     <option value="contrato">Contrato</option>
                     <option value="planimetria">Planimetria</option>

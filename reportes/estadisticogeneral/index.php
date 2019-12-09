@@ -1,7 +1,7 @@
 <?php
 include_once "../../login/check.php";
 $folder = "../../";
-$titulo = "Reporte de Estadístico de Resoluciones Aprobadas";
+$titulo = "Reporte General de Estadístico de Resoluciones ";
 
 include_once "../../class/oficina.php";
 $oficina = new oficina;

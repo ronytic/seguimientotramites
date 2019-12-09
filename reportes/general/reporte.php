@@ -4,7 +4,7 @@ $tipodocumento = $_GET['tipodocumento'] != "" ? $_GET['tipodocumento'] : '%';
 
 $fechadesde = $_GET['fechadesde'];
 $fechahasta = $_GET['fechahasta'];
-$titulo = "Reporte de Resoluciones Aprobadas";
+$titulo = "Reporte de Resoluciones General";
 require_once "../../impresion/pdf.php";
 class PDF extends PPDF
 {
@@ -26,16 +26,16 @@ $hojaruta = new hojaruta;
 include_once "../../class/oficina.php";
 $oficina = new oficina;
 $hojaruta->campos = array("count(*) as cantidad,codoficinaorigen,tipodocumento");
-$mensajedeObservacion = "aprobado";
+$mensajedeObservacion = "";
 
 if ($tipodocumento == "planimetria") {
-    $hr = $hojaruta->queryE("SELECT count(*) as cantidad,codoficinaorigen,tipodocumento,tc.nombre FROM hojaruta hr JOIN planimetria p on p.codplanimetria=hr.codigo JOIN tipocontrato tc ON tc.codtipocontrato=p.planimetriacodtipodocumento WHERE tipodocumento LIKE 'planimetria' and hr.fecharegistro BETWEEN '$fechadesde' and '$fechahasta' and hr.activo=1 and observacion LIKE '%$mensajedeObservacion%' GROUP BY p.planimetriacodtipodocumento", "lock");
+    $hr = $hojaruta->queryE("SELECT count(*) as cantidad,codoficinaorigen,tipodocumento,tc.nombre FROM hojaruta hr JOIN planimetria p on p.codplanimetria=hr.codigo JOIN tipocontrato tc ON tc.codtipocontrato=p.planimetriacodtipodocumento WHERE tipodocumento LIKE 'planimetria' and hr.fecharegistro BETWEEN '$fechadesde' and '$fechahasta' and hr.activo=1  GROUP BY p.planimetriacodtipodocumento", "lock");
 }
 if ($tipodocumento == "contrato") {
-    $hr = $hojaruta->queryE("SELECT count(*) as cantidad,codoficinaorigen,tipodocumento,tc.nombre FROM hojaruta hr JOIN contrato c on c.codcontrato=hr.codigo JOIN tipocontrato tc ON tc.codtipocontrato=c.contratocodtipocontrato WHERE tipodocumento LIKE 'contrato' and hr.fecharegistro BETWEEN '$fechadesde' and '$fechahasta' and hr.activo=1 and observacion LIKE '%$mensajedeObservacion%' GROUP BY c.contratocodtipocontrato", "lock");
+    $hr = $hojaruta->queryE("SELECT count(*) as cantidad,codoficinaorigen,tipodocumento,tc.nombre FROM hojaruta hr JOIN contrato c on c.codcontrato=hr.codigo JOIN tipocontrato tc ON tc.codtipocontrato=c.contratocodtipocontrato WHERE tipodocumento LIKE 'contrato' and hr.fecharegistro BETWEEN '$fechadesde' and '$fechahasta' and hr.activo=1  GROUP BY c.contratocodtipocontrato", "lock");
 }
 if ($tipodocumento == "otros") {
-    $hr = $hojaruta->queryE("SELECT count(*) as cantidad,codoficinaorigen,tipodocumento,tc.nombre FROM hojaruta hr JOIN planimetria p on p.codplanimetria=hr.codigo JOIN tipocontrato tc ON tc.codtipocontrato=p.planimetriacodtipodocumento WHERE tipodocumento LIKE 'otros' and hr.fecharegistro BETWEEN '$fechadesde' and '$fechahasta' and hr.activo=1 and observacion LIKE '%$mensajedeObservacion%' GROUP BY p.planimetriacodtipodocumento", "lock");
+    $hr = $hojaruta->queryE("SELECT count(*) as cantidad,codoficinaorigen,tipodocumento,tc.nombre FROM hojaruta hr JOIN planimetria p on p.codplanimetria=hr.codigo JOIN tipocontrato tc ON tc.codtipocontrato=p.planimetriacodtipodocumento WHERE tipodocumento LIKE 'otros' and hr.fecharegistro BETWEEN '$fechadesde' and '$fechahasta' and hr.activo=1  GROUP BY p.planimetriacodtipodocumento", "lock");
 }
 // $hr = array_shift($hr);
 // echo "<pre>";

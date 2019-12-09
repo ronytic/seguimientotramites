@@ -1,7 +1,7 @@
 <?php
 include_once "../../login/check.php";
 $folder = "../../";
-$titulo = "Reporte de Estadístico de Resoluciones Aprobadas";
+$titulo = "Reporte General de Resoluciones ";
 
 include_once "../../class/oficina.php";
 $oficina = new oficina;
@@ -14,9 +14,6 @@ $est = array("0" => "Pendiente", "1" => "Revisado");
 // echo "</pre>";
 include_once "../../cabecerahtml.php";
 ?>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
 <?php include_once "../../cabecera.php";?>
 <div class="col-lg-12">
     <form action="busqueda.php" method="post" class="formulariobusqueda" data-respuesta="respuestaformulario">
@@ -24,8 +21,8 @@ include_once "../../cabecerahtml.php";
         <tr>
             <td class="text-center">
             Tipo de Documento
-                <select name="tipodocumento" class="form-control" required>
-                    <option value="" >Seleccionar Tipo de Documento</option>
+                <select name="tipodocumento" class="form-control"  required>
+                    <option value="">Seleccionar Tipo de Documento</option>
                     <option value="contrato">Contrato</option>
                     <option value="planimetria">Planimetria</option>
                     <option value="otros">Otros</option>
